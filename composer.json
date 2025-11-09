@@ -1,0 +1,65 @@
+{
+    "name": "jcf/boost-for-kiro-ide",
+    "description": "Kiro IDE support for Laravel Boost - adds Amazon Kiro IDE integration to Laravel Boost MCP server",
+    "keywords": [
+        "laravel",
+        "boost",
+        "kiro",
+        "ide",
+        "ai",
+        "mcp"
+    ],
+    "homepage": "https://github.com/jotafurtado/boost-for-kiro-ide",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "João C. Furtado",
+            "email": "jotacfurtado@gmail.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/jotafurtado/boost-for-kiro-ide/issues",
+        "source": "https://github.com/jotafurtado/boost-for-kiro-ide"
+    },
+    "require": {
+        "php": "^8.1",
+        "laravel/boost": "^1.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.20",
+        "mockery/mockery": "^1.6.12",
+        "orchestra/testbench": "^8.36.0|^9.15.0|^10.6",
+        "pestphp/pest": "^2.36.0|^3.8.4",
+        "phpstan/phpstan": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jcf\\BoostForKiro\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jcf\\BoostForKiro\\BoostForKiroServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "pest",
+        "lint": "pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
+
