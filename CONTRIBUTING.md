@@ -1,26 +1,26 @@
-# Contribuindo
+# Contributing
 
-Obrigado por considerar contribuir para o Boost for Kiro IDE!
+Thank you for considering contributing to Boost for Kiro IDE!
 
-## Processo de Desenvolvimento
+## Development Process
 
-1. Fork o projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/amazing-feature`)
-3. Faça commit das suas mudanças (`git commit -m 'Add some amazing feature'`)
-4. Push para a branch (`git push origin feature/amazing-feature`)
-5. Abra um Pull Request
+1. Fork the project
+2. Create a branch for your feature (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## Executando Testes
+## Running Tests
 
-Execute os testes com:
+Run the tests with:
 
 ```bash
 composer test
 ```
 
-## Padrões de Código
+## Code Standards
 
-Este projeto segue o PSR-12 e as convenções do Laravel. Execute o Pint para formatar seu código:
+This project follows PSR-12 and Laravel conventions. Run Pint to format your code:
 
 ```bash
 composer lint
@@ -28,24 +28,24 @@ composer lint
 
 ## PHPStan
 
-Execute a análise estática com:
+Run static analysis with:
 
 ```bash
 vendor/bin/phpstan analyse
 ```
 
-## Reportando Bugs
+## Reporting Bugs
 
-Por favor, use o [GitHub Issues](https://github.com/jotafurtado/boost-for-kiro-ide/issues) para reportar bugs.
+Please use [GitHub Issues](https://github.com/jotafurtado/boost-for-kiro-ide/issues) to report bugs.
 
-Ao reportar um bug, inclua:
+When reporting a bug, include:
 
-- Versão do PHP
-- Versão do Laravel
-- Versão do Laravel Boost
-- Versão deste pacote
-- Passos para reproduzir o problema
+- PHP version
+- Laravel version
+- Laravel Boost version
+- This package version
+- Steps to reproduce the issue
 
-## Código de Conduta
+## Code of Conduct
 
-Por favor, seja respeitoso e profissional em todas as interações relacionadas a este projeto.
+Please be respectful and professional in all interactions related to this project.
