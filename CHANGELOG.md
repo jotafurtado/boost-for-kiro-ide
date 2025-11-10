@@ -4,15 +4,23 @@ All notable changes to `boost-for-kiro-ide` will be documented in this file.
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed PHPStan configuration by removing invalid Laravel-specific parameters
+- Fixed code formatting issues (line endings and blank lines)
+- Added `/build/` directory to .gitignore
+
 ## [1.0.2] - 2025-11-10
 
 ### Fixed
+
 - Fixed GitHub Actions workflows with proper dependency caching
 - Improved error handling in CI/CD pipelines
 - Fixed PHPStan configuration with proper memory limits and error format
 - Added explicit Carbon dependency to avoid version conflicts
 
 ### Changed
+
 - Updated actions/checkout from v5 to v4 for better stability
 - Changed fail-fast to false in test matrix to see all test results
 - Improved workflow performance with Composer cache
