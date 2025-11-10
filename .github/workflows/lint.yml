@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -22,11 +22,24 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, fileinfo
           coverage: none
 
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-phpstan-${{ hashFiles('**/composer.json') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-phpstan-
+            ${{ runner.os }}-composer-
+
       - name: Install dependencies
-        run: composer update --prefer-stable --prefer-dist --no-interaction
+        run: composer update --prefer-stable --prefer-dist --no-interaction --no-progress
 
       - name: Run PHPStan
-        run: vendor/bin/phpstan analyse --memory-limit=-1 || true
+        run: vendor/bin/phpstan analyse --memory-limit=1G --error-format=github
 
   pint:
     runs-on: ubuntu-latest
@@ -34,7 +47,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -43,8 +56,21 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, fileinfo
           coverage: none
 
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-pint-${{ hashFiles('**/composer.json') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-pint-
+            ${{ runner.os }}-composer-
+
       - name: Install dependencies
-        run: composer update --prefer-stable --prefer-dist --no-interaction
+        run: composer update --prefer-stable --prefer-dist --no-interaction --no-progress
 
       - name: Run Laravel Pint
         run: vendor/bin/pint --test
