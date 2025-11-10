@@ -4,13 +4,15 @@ All notable changes to `boost-for-kiro-ide` will be documented in this file.
 
 ## [Unreleased]
 
-### Added
-- Initial release
-- Kiro IDE support for Laravel Boost
-- Automatic registration via Service Provider
-- MCP configuration at `.kiro/settings/mcp.json`
-- AI guidelines at `.kiro/steering/laravel-boost.md`
-- Support for macOS, Linux, and Windows platforms
+## [1.0.1] - 2025-11-10
+
+### Changed
+- Updated documentation (README.md and CONTRIBUTING.md) to English for wider community support
+- Fixed GitHub repository URLs from `jcf` to `jotafurtado`
+- Updated composer.json with correct GitHub repository links
+
+### Removed
+- Removed internal documentation files (PUBLISHING.md, PACKAGE_SUMMARY.md, QUICK_START.md)
 
 ## [1.0.0] - 2025-11-09
 
