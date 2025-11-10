@@ -7,7 +7,7 @@ use Laravel\Boost\Boost;
 
 it('registers kiro code environment with boost', function () {
     $environments = Boost::getCodeEnvironments();
-    
+
     expect($environments)
         ->toHaveKey('kiro')
         ->and($environments['kiro'])
@@ -16,7 +16,7 @@ it('registers kiro code environment with boost', function () {
 
 it('kiro code environment can be instantiated', function () {
     $kiro = app(Kiro::class);
-    
+
     expect($kiro)
         ->toBeInstanceOf(Kiro::class)
         ->and($kiro->name())
@@ -27,7 +27,7 @@ it('kiro code environment can be instantiated', function () {
 
 it('kiro code environment has correct configuration paths', function () {
     $kiro = app(Kiro::class);
-    
+
     expect($kiro->mcpConfigPath())
         ->toBe('.kiro/settings/mcp.json')
         ->and($kiro->guidelinesPath())
@@ -35,4 +35,3 @@ it('kiro code environment has correct configuration paths', function () {
         ->and($kiro->frontmatter())
         ->toBeFalse();
 });
-

@@ -8,7 +8,7 @@ use Laravel\Boost\Install\Enums\Platform;
 it('provides correct system detection config for darwin', function () {
     $kiro = app(Kiro::class);
     $config = $kiro->systemDetectionConfig(Platform::Darwin);
-    
+
     expect($config)
         ->toHaveKey('paths')
         ->and($config['paths'])
@@ -18,7 +18,7 @@ it('provides correct system detection config for darwin', function () {
 it('provides correct system detection config for linux', function () {
     $kiro = app(Kiro::class);
     $config = $kiro->systemDetectionConfig(Platform::Linux);
-    
+
     expect($config)
         ->toHaveKey('paths')
         ->and($config['paths'])
@@ -30,7 +30,7 @@ it('provides correct system detection config for linux', function () {
 it('provides correct system detection config for windows', function () {
     $kiro = app(Kiro::class);
     $config = $kiro->systemDetectionConfig(Platform::Windows);
-    
+
     expect($config)
         ->toHaveKey('paths')
         ->and($config['paths'])
@@ -41,10 +41,9 @@ it('provides correct system detection config for windows', function () {
 it('provides correct project detection config', function () {
     $kiro = app(Kiro::class);
     $config = $kiro->projectDetectionConfig();
-    
+
     expect($config)
         ->toHaveKey('paths')
         ->and($config['paths'])
         ->toContain('.kiro');
 });
-

@@ -22,4 +22,3 @@ class BoostForKiroServiceProvider extends ServiceProvider
         Boost::registerCodeEnvironment('kiro', Kiro::class);
     }
 }
-
