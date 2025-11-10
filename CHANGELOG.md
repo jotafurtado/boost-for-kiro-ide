@@ -9,6 +9,7 @@ All notable changes to `boost-for-kiro-ide` will be documented in this file.
 - Fixed PHPStan configuration by removing invalid Laravel-specific parameters
 - Fixed code formatting issues (line endings and blank lines)
 - Fixed Pest test configuration by removing non-existent Feature test suite references
+- Fixed test matrix to exclude PHP 8.1 from Laravel 11 tests (Laravel 11 requires PHP 8.2+)
 - Added `/build/` directory to .gitignore
 
 ## [1.0.2] - 2025-11-10
