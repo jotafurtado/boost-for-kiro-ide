@@ -4,6 +4,8 @@ All notable changes to `boost-for-kiro-ide` will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.3] - 2025-11-10
+
 ### Fixed
 
 - Fixed PHPStan configuration by removing invalid Laravel-specific parameters
