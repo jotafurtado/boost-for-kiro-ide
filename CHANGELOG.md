@@ -4,6 +4,18 @@ All notable changes to `boost-for-kiro-ide` will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.4] - 2025-11-17
+
+### Changed
+
+- Updated all dependencies to their latest versions:
+  - laravel/boost: ^1.0 (latest: 1.8.0)
+  - laravel/pint: ^1.20 (latest: 1.25.1)
+  - mockery/mockery: ^1.6.12 (latest: 1.6.12)
+  - orchestra/testbench: ^8.36.0|^9.15.0|^10.6 (latest: 10.6.0)
+  - pestphp/pest: ^2.36.0|^3.8.4 (latest: 3.8.4)
+  - phpstan/phpstan: ^2.1 (latest: 2.1.32)
+
 ## [1.0.3] - 2025-11-10
 
 ### Fixed
