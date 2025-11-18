@@ -18,7 +18,9 @@ class BoostForKiroServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Register Kiro IDE with Laravel Boost
-        Boost::registerCodeEnvironment('kiro', Kiro::class);
+        // Register Kiro IDE with Laravel Boost only if the Boost class exists
+        if (class_exists(Boost::class)) {
+            Boost::registerCodeEnvironment('kiro', Kiro::class);
+        }
     }
 }

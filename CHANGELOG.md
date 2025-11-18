@@ -4,6 +4,14 @@ All notable changes to `boost-for-kiro-ide` will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.5] - 2025-11-17
+
+### Fixed
+
+- Fixed fatal error during package installation when laravel/boost is not yet loaded
+- Added class_exists check in ServiceProvider to prevent "Class Laravel\Boost\Boost not found" error
+- Improved installation reliability for new users
+
 ## [1.0.4] - 2025-11-17
 
 ### Changed
