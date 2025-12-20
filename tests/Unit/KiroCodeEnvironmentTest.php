@@ -47,3 +47,45 @@ it('provides correct project detection config', function () {
         ->and($config['paths'])
         ->toContain('.kiro');
 });
+
+it('returns correct name identifier', function () {
+    $kiro = app(Kiro::class);
+
+    expect($kiro->name())->toBe('kiro');
+});
+
+it('returns correct display name', function () {
+    $kiro = app(Kiro::class);
+
+    expect($kiro->displayName())->toBe('Kiro');
+});
+
+it('returns correct mcp config path', function () {
+    $kiro = app(Kiro::class);
+
+    expect($kiro->mcpConfigPath())->toBe('.kiro/settings/mcp.json');
+});
+
+it('returns correct guidelines path', function () {
+    $kiro = app(Kiro::class);
+
+    expect($kiro->guidelinesPath())->toBe('.kiro/steering/laravel-boost.md');
+});
+
+it('returns false for frontmatter', function () {
+    $kiro = app(Kiro::class);
+
+    expect($kiro->frontmatter())->toBeFalse();
+});
+
+it('implements Agent interface', function () {
+    $kiro = app(Kiro::class);
+
+    expect($kiro)->toBeInstanceOf(\Laravel\Boost\Contracts\Agent::class);
+});
+
+it('implements McpClient interface', function () {
+    $kiro = app(Kiro::class);
+
+    expect($kiro)->toBeInstanceOf(\Laravel\Boost\Contracts\McpClient::class);
+});

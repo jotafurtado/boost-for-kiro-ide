@@ -51,7 +51,15 @@
     },
     "scripts": {
         "test": "pest",
-        "lint": "pint"
+        "test:coverage": "pest --coverage --min=80",
+        "lint": "pint",
+        "lint:test": "pint --test",
+        "analyse": "phpstan analyse",
+        "check": [
+            "@lint:test",
+            "@analyse",
+            "@test"
+        ]
     },
     "config": {
         "sort-packages": true,

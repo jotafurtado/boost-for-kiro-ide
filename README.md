@@ -59,6 +59,80 @@ In Kiro IDE:
 
 Kiro automatically loads the AI guidelines from `.kiro/steering/laravel-boost.md` to provide contextualized assistance for your Laravel application.
 
+## Practical Usage Examples
+
+Once configured, you can interact with your Laravel application through Kiro's AI assistant using the MCP tools:
+
+### Example 1: Querying the Database
+
+```
+You: "Show me the first 5 users from the database"
+
+Kiro AI: *Uses the database_query MCP tool*
+```
+
+The AI will execute a query like `SELECT * FROM users LIMIT 5` and display the results.
+
+### Example 2: Listing Routes
+
+```
+You: "List all API routes in my application"
+
+Kiro AI: *Uses the list_routes MCP tool*
+```
+
+The AI will filter and display all routes with the `api` prefix.
+
+### Example 3: Checking Application Info
+
+```
+You: "What version of Laravel am I using and what packages are installed?"
+
+Kiro AI: *Uses the application_info MCP tool*
+```
+
+The AI will display PHP version, Laravel version, installed packages, and Eloquent models.
+
+### Example 4: Executing Code with Tinker
+
+```
+You: "Count how many published posts exist in the database"
+
+Kiro AI: *Uses the tinker MCP tool*
+```
+
+The AI will execute code like `App\Models\Post::where('published', true)->count()` and return the result.
+
+### Example 5: Reading Recent Logs
+
+```
+You: "Show me the last error from the logs"
+
+Kiro AI: *Uses the last_error MCP tool*
+```
+
+The AI will fetch and display the most recent error entry from your Laravel logs.
+
+### Example 6: Searching Laravel Documentation
+
+```
+You: "How do I use Laravel's queue system?"
+
+Kiro AI: *Uses the search_docs MCP tool*
+```
+
+The AI will search the official Laravel documentation and provide relevant information about queues.
+
+### Example 7: Inspecting Database Schema
+
+```
+You: "What columns does the users table have?"
+
+Kiro AI: *Uses the database_schema MCP tool*
+```
+
+The AI will display the complete schema for the `users` table, including column types, indexes, and relationships.
+
 ## Created File Structure
 
 After installation, the following files will be created in your Laravel project:
@@ -141,6 +215,59 @@ The package automatically detects Kiro IDE installations in the following locati
 **Project Detection:**
 
 - Presence of the `.kiro` directory in the project
+
+## Troubleshooting
+
+### Kiro IDE not detected automatically
+
+If Kiro IDE is not detected during `php artisan boost:install`:
+
+1. Verify that Kiro is installed in one of the expected paths (see "Automatic Detection" section above)
+2. Run manually: `which kiro` (Linux/macOS) or `where kiro` (Windows) to find the installation path
+3. If installed in a custom location, manually create the `.kiro` directory in your project root
+4. Re-run `php artisan boost:install` and select Kiro from the list
+
+### MCP Server not connecting
+
+If the MCP server is not connecting in Kiro IDE:
+
+1. Verify that the file `.kiro/settings/mcp.json` was created correctly
+2. Check the JSON syntax is valid (use a JSON validator if needed)
+3. In Kiro IDE, open the command palette (`Cmd+Shift+P` or `Ctrl+Shift+P`)
+4. Run "MCP: Reconnect All Servers"
+5. Check the MCP logs in Kiro: View > Output > MCP
+6. Ensure Laravel Boost MCP server is running: `php artisan boost:status`
+
+### Guidelines not being loaded
+
+The guidelines in `.kiro/steering/laravel-boost.md` should be loaded automatically by Kiro IDE.
+
+If they are not working:
+
+1. Verify the file exists and has read permissions: `ls -la .kiro/steering/`
+2. Check the file content is valid Markdown
+3. Restart Kiro IDE completely (close all windows)
+4. Re-open your Laravel project in Kiro
+5. Check Kiro's steering logs for any errors
+
+### Class 'Laravel\Boost\Boost' not found error
+
+If you encounter this error during `composer install` or `composer update`:
+
+This has been fixed in version 1.0.5+. If you're using an older version:
+
+1. Update to the latest version: `composer update jcf/boost-for-kiro-ide`
+2. Or, install Laravel Boost first: `composer require laravel/boost --dev`
+3. Then install this package: `composer require jcf/boost-for-kiro-ide --dev`
+
+### Laravel Boost commands not available
+
+If `php artisan boost:install` is not found:
+
+1. Ensure Laravel Boost is installed: `composer show laravel/boost`
+2. If not installed, run: `composer require laravel/boost --dev`
+3. Clear Laravel's cache: `php artisan config:clear && php artisan cache:clear`
+4. Verify the command is registered: `php artisan list boost`
 
 ## Testing
 

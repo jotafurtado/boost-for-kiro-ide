@@ -4,6 +4,22 @@ All notable changes to `boost-for-kiro-ide` will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- Comprehensive unit tests for all Kiro class methods (100% coverage)
+- Code coverage workflow in CI/CD pipeline with minimum 80% coverage requirement
+- Troubleshooting section in README with common issues and solutions
+- Practical usage examples section in README demonstrating MCP tools
+- Additional Composer scripts: `test:coverage`, `lint:test`, `analyse`, and `check`
+- GitHub issue templates for bug reports and feature requests
+- GitHub pull request template with comprehensive checklist
+
+### Improved
+
+- Enhanced documentation with real-world examples and troubleshooting guide
+- Better developer experience with additional Composer scripts
+- Increased test coverage from ~40% to 100%
+
 ## [1.0.5] - 2025-11-17
 
 ### Fixed
