@@ -4,6 +4,12 @@ All notable changes to `boost-for-kiro-ide` will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.6] - 2026-01-04
+
+### Changed
+
+- Updated `laravel/boost` dependency to v1.8.3.
+
 ## [1.0.5] - 2025-11-17
 
 ### Fixed
