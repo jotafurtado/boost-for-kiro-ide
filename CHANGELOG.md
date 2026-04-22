@@ -2,6 +2,14 @@
 
 All notable changes to `boost-for-kiro-ide` will be documented in this file.
 
+## [2.3.1] - 2026-04-21
+
+### Changed
+
+- Streamlined `README.md` by removing redundant sections already covered by the official Laravel Boost documentation.
+- Removed obsolete manual testing guide (`MANUAL_TESTING_GUIDE.md`) that covered features now natively handled by Laravel Boost v2.4+.
+- Added proper attribution to community contributor Karel Faille (@shaffe-fr) for PR #7.
+
 ## [2.3.0] - 2026-04-21
 
 ### Changed
