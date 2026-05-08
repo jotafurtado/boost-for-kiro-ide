@@ -2,6 +2,12 @@
 
 All notable changes to `boost-for-kiro-ide` will be documented in this file.
 
+## [2.3.2] - 2026-05-07
+
+### Fixed
+
+- Fixed an issue (#8) where prompt names containing slashes (e.g., `filament/model`) would cause a "Failed to open stream" error by properly sanitizing the generated `.kiro.hook` filenames.
+
 ## [2.3.1] - 2026-04-21
 
 ### Changed

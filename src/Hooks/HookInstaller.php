@@ -29,7 +29,8 @@ class HookInstaller
         $filenames = [];
 
         $prompts->each(function (Prompt $prompt) use (&$results, &$filenames): void {
-            $filename = 'boost-prompt-'.$prompt->name();
+            $safeName = str_replace(['/', '\\'], '-', $prompt->name());
+            $filename = 'boost-prompt-'.$safeName;
             $filenames[] = $filename;
             $hookData = $this->converter->convert($prompt);
             $results[$prompt->name()] = $this->writer->write($filename, $hookData);
