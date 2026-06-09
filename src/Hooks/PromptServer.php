@@ -4,17 +4,20 @@ declare(strict_types=1);
 
 namespace Jcf\BoostForKiro\Hooks;
 
+use Illuminate\Container\Container;
 use Illuminate\Support\Collection;
 use Laravel\Boost\Mcp\Boost;
 use Laravel\Mcp\Server\Prompt;
-use Laravel\Mcp\Server\ServerContext;
 
 /**
  * Extends the Boost MCP server to expose prompt discovery.
  *
- * Since Server requires a Transport in its constructor, we override
- * the constructor to avoid that dependency — we only need prompt discovery,
- * not the actual MCP transport layer.
+ * We override the constructor to avoid the Transport dependency — we only
+ * need prompt discovery, not the actual MCP transport layer.
+ *
+ * Prompts are resolved directly from the discovered class list to avoid
+ * coupling to the internal ServerContext constructor, which has changed
+ * across laravel/mcp versions.
  */
 class PromptServer extends Boost
 {
@@ -30,21 +33,14 @@ class PromptServer extends Boost
      */
     public function getPrompts(): Collection
     {
-        $classes = $this->discoverPrompts();
+        $container = Container::getInstance();
 
-        $context = new ServerContext(
-            supportedProtocolVersions: [],
-            serverCapabilities: [],
-            serverName: '',
-            serverVersion: '',
-            instructions: '',
-            maxPaginationLength: 50,
-            defaultPaginationLength: 50,
-            tools: [],
-            resources: [],
-            prompts: $classes,
-        );
-
-        return $context->prompts();
+        return collect($this->discoverPrompts())
+            ->map(fn (Prompt|string $prompt): Prompt => is_string($prompt)
+                ? $container->make($prompt)
+                : $prompt
+            )
+            ->filter(fn (Prompt $prompt): bool => $prompt->eligibleForRegistration())
+            ->values();
     }
 }

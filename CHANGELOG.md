@@ -2,11 +2,18 @@
 
 All notable changes to `boost-for-kiro-ide` will be documented in this file.
 
+## [2.3.5] - 2026-06-09
+
+### Fixed
+
+- Rewrote `PromptServer::getPrompts()` to resolve prompts directly from the discovered class list via the container, removing the direct instantiation of `ServerContext`. This eliminates compatibility issues caused by breaking changes in the `laravel/mcp` internal API across versions (e.g. `serverName`/`serverVersion` replaced by `Implementation` in v0.8.0).
+- Removed the `laravel/mcp: ~0.7.0` explicit constraint introduced in v2.3.4, which was itself causing conflicts with `laravel/boost` versions that require `laravel/mcp ^0.7.1|^0.8.0`.
+
 ## [2.3.4] - 2026-06-09
 
 ### Fixed
 
-- Added explicit `laravel/mcp: ~0.7.0` dependency to prevent installation errors when a project resolves an older `laravel/mcp` version (e.g. `^0.5.x` or `^0.6.x`) that has a different `ServerContext` constructor signature, causing `Unknown named parameter $serverName`.
+- Added explicit `laravel/mcp: ~0.7.0` dependency to prevent installation errors when a project resolves an older `laravel/mcp` version (e.g. `^0.5.x` or `^0.6.x`) that has a different `ServerContext` constructor signature, causing `Unknown named parameter $serverName`. *(Superseded by v2.3.5)*
 
 ## [2.3.3] - 2026-05-20
 
