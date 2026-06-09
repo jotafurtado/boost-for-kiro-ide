@@ -2,6 +2,12 @@
 
 All notable changes to `boost-for-kiro-ide` will be documented in this file.
 
+## [2.3.4] - 2026-06-09
+
+### Fixed
+
+- Added explicit `laravel/mcp: ~0.7.0` dependency to prevent installation errors when a project resolves an older `laravel/mcp` version (e.g. `^0.5.x` or `^0.6.x`) that has a different `ServerContext` constructor signature, causing `Unknown named parameter $serverName`.
+
 ## [2.3.3] - 2026-05-20
 
 ### Changed
