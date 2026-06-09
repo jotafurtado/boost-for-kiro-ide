@@ -2,6 +2,17 @@
 
 All notable changes to `boost-for-kiro-ide` will be documented in this file.
 
+## [2.3.3] - 2026-05-20
+
+### Changed
+
+- Updated `laravel/boost` dependency to `v2.4.8`.
+- Verified compatibility of the prompt-to-hook converter with the latest Laravel Boost version.
+
+### Added
+
+- Added `HookInstallerTest` integration test to ensure prompt discovery, rendering, and hook conversion work as expected.
+
 ## [2.3.2] - 2026-05-07
 
 ### Fixed
