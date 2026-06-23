@@ -20,6 +20,7 @@ class PromptToHookConverter
     public function convert(Prompt $prompt): array
     {
         return [
+            'enabled' => true,
             'name' => 'Boost: '.Str::headline($prompt->name()),
             'version' => $this->getBoostVersion(),
             'description' => $prompt->description(),

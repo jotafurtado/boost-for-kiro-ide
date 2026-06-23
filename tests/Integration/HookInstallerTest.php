@@ -38,6 +38,7 @@ describe('HookInstaller Integration', function () {
 
         $hookContent = json_decode(file_get_contents($expectedFile), true);
         expect($hookContent)->toBeArray();
+        expect($hookContent['enabled'])->toBeTrue();
         expect($hookContent['name'])->toBe('Boost: Laravel Code Simplifier');
         expect($hookContent['when']['type'])->toBe('userTriggered');
         expect($hookContent['description'])->toContain('Simplifies and refines');
