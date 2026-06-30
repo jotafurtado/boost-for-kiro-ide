@@ -2,15 +2,17 @@
 
 All notable changes to `boost-for-kiro-ide` will be documented in this file.
 
-## [2.3.6] - 2026-06-30
-
-### Added
-
-- Added `enabled: true` field to generated hook files, aligning with the Kiro IDE hook schema and ensuring hooks are active by default.
+## [2.3.7] - 2026-06-30
 
 ### Fixed
 
 - Simplified `PromptServer::getPrompts()` to resolve prompt classes directly from `discoverPrompts()` without the redundant `is_string()` runtime check, fixing a PHPStan error (`Call to function is_string() with class-string<...> will always evaluate to true`) caused by `laravel/boost`'s `@return array<int, class-string<Prompt>>` annotation.
+
+## [2.3.6] - 2026-06-23
+
+### Added
+
+- Added `enabled: true` field to generated hook files, aligning with the Kiro IDE hook schema and ensuring hooks are active by default.
 
 ## [2.3.5] - 2026-06-09
 
