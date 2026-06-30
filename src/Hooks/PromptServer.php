@@ -36,10 +36,7 @@ class PromptServer extends Boost
         $container = Container::getInstance();
 
         return collect($this->discoverPrompts())
-            ->map(fn (Prompt|string $prompt): Prompt => is_string($prompt)
-                ? $container->make($prompt)
-                : $prompt
-            )
+            ->map(fn (string $promptClass): Prompt => $container->make($promptClass))
             ->filter(fn (Prompt $prompt): bool => $prompt->eligibleForRegistration())
             ->values();
     }
