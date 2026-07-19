@@ -24,7 +24,7 @@ class HookInstaller
      */
     public function install(): array
     {
-        $prompts = $this->promptServer->getPrompts();
+        $prompts = $this->prompts();
         $results = [];
         $filenames = [];
 
@@ -48,6 +48,8 @@ class HookInstaller
      */
     public function prompts(): Collection
     {
-        return $this->promptServer->getPrompts();
+        return $this->promptServer->getPrompts()
+            ->filter(fn (Prompt $prompt): bool => $this->converter->supports($prompt))
+            ->values();
     }
 }

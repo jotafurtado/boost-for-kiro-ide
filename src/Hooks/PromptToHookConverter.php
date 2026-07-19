@@ -13,6 +13,14 @@ use Laravel\Mcp\Server\Prompt;
 class PromptToHookConverter
 {
     /**
+     * Determine whether the prompt can be represented as a static Kiro hook.
+     */
+    public function supports(Prompt $prompt): bool
+    {
+        return $prompt->arguments() === [];
+    }
+
+    /**
      * Convert a Prompt instance to a Kiro hook array.
      *
      * @return array<string, mixed>

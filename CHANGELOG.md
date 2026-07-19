@@ -2,6 +2,12 @@
 
 All notable changes to `boost-for-kiro-ide` will be documented in this file.
 
+## [Unreleased]
+
+### Changed
+
+- Prompts with arguments are now skipped because static Kiro hooks cannot collect or resolve MCP prompt arguments safely.
+
 ## [2.3.7] - 2026-06-30
 
 ### Fixed
