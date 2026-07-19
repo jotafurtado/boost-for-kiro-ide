@@ -2,7 +2,7 @@
 
 All notable changes to `boost-for-kiro-ide` will be documented in this file.
 
-## [Unreleased]
+## [2.4.0] - 2026-07-19
 
 ### Added
 
