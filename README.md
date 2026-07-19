@@ -4,7 +4,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/jcf/boost-for-kiro-ide.svg?style=flat-square)](https://packagist.org/packages/jcf/boost-for-kiro-ide)
 [![License](https://img.shields.io/packagist/l/jcf/boost-for-kiro-ide.svg?style=flat-square)](https://packagist.org/packages/jcf/boost-for-kiro-ide)
 
-Empowers Amazon's **Kiro IDE** within [Laravel Boost](https://github.com/laravel/boost). While Laravel Boost 2.4+ now natively configures Kiro IDE, **this package remains indispensable**. Kiro IDE does not currently understand MCP Prompts natively. This package acts as your "Hook Superpower," seamlessly translating all rich Boost MCP recommendations and commands into interactive **Agent Hooks** (`.kiro/hooks/*.hook`), enabling you to trigger them visually right from the Kiro interface.
+Brings [Laravel Boost](https://github.com/laravel/boost) MCP prompts to Amazon's **Kiro IDE Agent Hooks** panel. Laravel Boost 2.4+ natively configures Kiro, and Kiro 0.10+ natively exposes MCP prompts in chat through its `#` context-provider menu. This optional package provides a complementary workflow by converting eligible Boost prompts into persistent, user-triggered **Agent Hooks** (`.kiro/hooks/*.kiro.hook`) that can be launched directly from the hooks panel.
 
 ## About Kiro IDE
 
@@ -29,10 +29,10 @@ You can install the package via Composer:
 composer require jcf/boost-for-kiro-ide --dev
 ```
 
-The package automatically registers Kiro IDE with Laravel Boost through Laravel's auto-discovery.
+The package is discovered automatically by Laravel and adds prompt-to-hook synchronization on top of Boost's native Kiro integration.
 
-> **✨ Laravel Boost v2.4+ Native Support**  
-> Starting with version 2.4, Laravel Boost creates the Kiro Agent and registers MCP capabilities out-of-the-box. The industry standard `AGENTS.md` file is now used natively, replacing the old `.kiro/steering/laravel-boost.md`. This is fantastic because it centralizes all AI guidelines in a single, unified file, cutting down on token waste and improving context retention. This package builds exactly on top of that official integration, focusing entirely on expanding your Hook arsenal.
+> **Laravel Boost v2.4+ Native Support**
+> Laravel Boost creates the Kiro agent, registers its MCP server, writes `AGENTS.md`, and installs skills without this package. Install this package only if you also want Boost prompts represented as Kiro Agent Hooks.
 
 ## Usage
 
@@ -55,9 +55,9 @@ You can add these files to `.gitignore` if desired, as they can be regenerated a
 
 ## Prompt-to-Hook Conversion
 
-Kiro IDE does not support MCP prompts. To make Boost's prompts available in Kiro, this package converts them into agent hooks — user-triggered actions that appear in Kiro's **Agent Hooks** panel.
+Kiro IDE supports Boost's MCP prompts natively in chat. This package additionally converts eligible, argument-free Boost prompts into agent hooks — persistent user-triggered actions that appear in Kiro's **Agent Hooks** panel.
 
-This gives Kiro users access to the same upgrade guides and code assistance prompts that other MCP clients get natively, like "Upgrade Laravel v13" or "Laravel Code Simplifier".
+This provides one-click access from the hooks panel to upgrade guides and code assistance prompts like "Upgrade Laravel v13" or "Laravel Code Simplifier". If you prefer Kiro's native MCP prompt picker, you do not need this package.
 
 Hooks are synced automatically when running `boost:install` or `boost:update`. Only prompts that are relevant to your project are included (e.g., the Inertia upgrade prompt only appears if your project uses Inertia).
 
@@ -84,13 +84,15 @@ When disabled, hooks are only synced when you explicitly run `php artisan boost:
 
 ## Compatibility
 
-This package is designed to be compatible with all versions of Laravel Boost ^2.0. It uses the extension hooks provided by Laravel Boost to register the Kiro code environment.
+This package is designed for Laravel Boost ^2.4 and converts its eligible MCP prompts into Kiro's hook format.
 
 ### Tested Versions
 
 - Laravel Boost: ^2.4
-- Laravel: 11.x, 12.x, 13.x
-- PHP: 8.2, 8.3, 8.4
+- Laravel: 11.55.x, 12.x, 13.x
+- PHP: 8.2, 8.3, 8.4, 8.5
+
+> Laravel 11 is retained for legacy compatibility testing. Because that framework line is end-of-life and covered by current security advisories, Composer may block fresh Laravel 11 dependency resolution. Applications should upgrade to Laravel 12 or 13.
 
 ## Testing
 

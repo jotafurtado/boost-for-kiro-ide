@@ -13,7 +13,9 @@ All notable changes to `boost-for-kiro-ide` will be documented in this file.
 ### Changed
 
 - Updated GitHub Actions dependencies to `actions/checkout` v7 and `actions/cache` v6.
+- Clarified that Laravel Boost and Kiro support MCP prompts natively, while this package provides the optional Agent Hooks panel workflow.
 - Prompts with arguments are now skipped because static Kiro hooks cannot collect or resolve MCP prompt arguments safely.
+- Verified compatibility with Laravel Boost 2.4.13, Laravel MCP 0.9.0, Pest 4.7.5, and PHPStan 2.2.5.
 
 ## [2.3.7] - 2026-06-30
 
