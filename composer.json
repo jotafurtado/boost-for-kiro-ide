@@ -1,10 +1,11 @@
 {
     "name": "jcf/boost-for-kiro-ide",
-    "description": "Kiro IDE support for Laravel Boost - adds Amazon Kiro IDE integration to Laravel Boost MCP server",
+    "description": "Converts Laravel Boost MCP prompts into Kiro IDE Agent Hooks",
     "keywords": [
         "laravel",
         "boost",
         "kiro",
+        "hooks",
         "ide",
         "ai",
         "mcp"
@@ -23,7 +24,8 @@
     },
     "require": {
         "php": "^8.2",
-        "laravel/boost": "^2.4"
+        "laravel/boost": "^2.4",
+        "laravel/mcp": "^0.7.1|^0.8.0|^0.9.0"
     },
     "require-dev": {
         "laravel/pint": "^1.20",

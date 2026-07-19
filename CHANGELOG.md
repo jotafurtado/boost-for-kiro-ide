@@ -4,6 +4,10 @@ All notable changes to `boost-for-kiro-ide` will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- Added an explicit `laravel/mcp` dependency with support for versions 0.7, 0.8, and 0.9 instead of relying on Laravel Boost's transitive dependency.
+
 ### Changed
 
 - Prompts with arguments are now skipped because static Kiro hooks cannot collect or resolve MCP prompt arguments safely.
