@@ -7,9 +7,12 @@ All notable changes to `boost-for-kiro-ide` will be documented in this file.
 ### Added
 
 - Added an explicit `laravel/mcp` dependency with support for versions 0.7, 0.8, and 0.9 instead of relying on Laravel Boost's transitive dependency.
+- Added PHP 8.5 and Laravel 13 to the CI test matrix. Laravel 13 is tested on PHP 8.3 and newer, matching its runtime requirement.
+- Pinned legacy Laravel 11 CI coverage to its final stable 11.55 line. Composer's security blocking is disabled only for those legacy jobs because current advisories cover the entire end-of-life framework line.
 
 ### Changed
 
+- Updated GitHub Actions dependencies to `actions/checkout` v7 and `actions/cache` v6.
 - Prompts with arguments are now skipped because static Kiro hooks cannot collect or resolve MCP prompt arguments safely.
 
 ## [2.3.7] - 2026-06-30

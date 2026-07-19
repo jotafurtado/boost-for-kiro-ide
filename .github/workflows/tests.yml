@@ -13,9 +13,12 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
-        php: [8.2, 8.3, 8.4]
-        laravel: [11.*, 12.*]
+        php: [8.2, 8.3, 8.4, 8.5]
+        laravel: ['11.55.*', '12.*', '13.*']
         stability: [prefer-stable]
+        exclude:
+          - php: 8.2
+            laravel: '13.*'
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.os }}
 
@@ -46,6 +49,10 @@ jobs:
             ${{ runner.os }}-composer-
 
       - name: Install dependencies
+        env:
+          # Laravel 11 is EOL and blocked by current Composer advisories. We
+          # install its final stable line only to preserve legacy test coverage.
+          COMPOSER_NO_SECURITY_BLOCKING: ${{ startsWith(matrix.laravel, '11.') && '1' || '' }}
         run: |
           composer require "laravel/framework:${{ matrix.laravel }}" "nesbot/carbon:^2.72.2|^3.0" --no-interaction --no-update
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-progress
