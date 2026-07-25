@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jcf\BoostForKiro\Hooks;
+namespace Jcf\BoostForKiro\Steering;
 
 use Illuminate\Container\Container;
 use Illuminate\Support\Collection;

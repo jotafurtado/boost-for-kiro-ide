@@ -2,6 +2,22 @@
 
 All notable changes to `boost-for-kiro-ide` will be documented in this file.
 
+## [2.5.0] - 2026-07-25
+
+### Changed
+
+- Migrated generated artifacts from Kiro 0.x Agent Hooks (`.kiro/hooks/boost-prompt-*.kiro.hook` using the `userTriggered`/`askAgent` schema) to Kiro 1.0 **manual steering files** (`.kiro/steering/boost-prompt-*.md` with `inclusion: manual` front matter). This follows the official Kiro 1.0 migration path: the `Manual`/`userTriggered` hook trigger was removed in IDE 1.0 and replaced by manual steering files, which are invoked on demand as `/<filename>` slash commands or `#<filename>` references. Boost prompts are now exposed as discoverable slash commands (e.g. `/boost-prompt-laravel-code-simplifier`) instead of the Agent Hooks panel.
+- `PromptToHookConverter` → `PromptToSteeringConverter`, `HookInstaller` → `SteeringInstaller`, `HookWriter` → `SteeringWriter` (under the new `Jcf\BoostForKiro\Steering` namespace). These classes are internal and not part of the package's public API.
+
+### Added
+
+- New `boost.agents.kiro.steering_path` config key (defaults to `.kiro/steering`) controls where steering files are written.
+- Sync now removes leftover `boost-prompt-*.kiro.hook` files from `.kiro/hooks/` so upgraded workspaces are cleaned up automatically.
+
+### Compatibility
+
+- No breaking changes for consumers: the `boost:kiro-hooks` Artisan command name, the `boost.agents.kiro.auto_sync_hooks` config key, and the `boost:install` / `boost:update` auto-sync hook are all preserved. Existing `.kiro.hook` files are simply replaced by `.kiro/steering/*.md` on the next sync.
+
 ## [2.4.0] - 2026-07-19
 
 ### Added

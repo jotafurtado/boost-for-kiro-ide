@@ -8,22 +8,23 @@ use Illuminate\Console\Events\CommandFinished;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Jcf\BoostForKiro\Console\InstallHooksCommand;
-use Jcf\BoostForKiro\Hooks\HookInstaller;
-use Jcf\BoostForKiro\Hooks\HookWriter;
-use Jcf\BoostForKiro\Hooks\PromptServer;
-use Jcf\BoostForKiro\Hooks\PromptToHookConverter;
+use Jcf\BoostForKiro\Steering\PromptServer;
+use Jcf\BoostForKiro\Steering\PromptToSteeringConverter;
+use Jcf\BoostForKiro\Steering\SteeringInstaller;
+use Jcf\BoostForKiro\Steering\SteeringWriter;
 
 class BoostForKiroServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->singleton(HookInstaller::class, function ($app): HookInstaller {
-            $hooksPath = config('boost.agents.kiro.hooks_path', '.kiro/hooks');
+        $this->app->singleton(SteeringInstaller::class, function ($app): SteeringInstaller {
+            $steeringPath = config('boost.agents.kiro.steering_path', '.kiro/steering');
+            $legacyHooksPath = config('boost.agents.kiro.hooks_path', '.kiro/hooks');
 
-            return new HookInstaller(
+            return new SteeringInstaller(
                 $app->make(PromptServer::class),
-                new PromptToHookConverter,
-                new HookWriter($hooksPath),
+                new PromptToSteeringConverter,
+                new SteeringWriter($steeringPath, $legacyHooksPath),
             );
         });
     }
@@ -36,7 +37,7 @@ class BoostForKiroServiceProvider extends ServiceProvider
             ]);
 
             Event::listen(CommandFinished::class, function (CommandFinished $event): void {
-                if (! in_array($event->command, ['boost:install', 'boost:update'])) {
+                if (! in_array($event->command, ['boost:install', 'boost:update'], true)) {
                     return;
                 }
 
@@ -48,7 +49,7 @@ class BoostForKiroServiceProvider extends ServiceProvider
                     return;
                 }
 
-                $this->app->make(HookInstaller::class)->install();
+                $this->app->make(SteeringInstaller::class)->install();
             });
         }
     }

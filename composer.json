@@ -1,6 +1,6 @@
 {
     "name": "jcf/boost-for-kiro-ide",
-    "description": "Converts Laravel Boost MCP prompts into Kiro IDE Agent Hooks",
+    "description": "Converts Laravel Boost MCP prompts into Kiro IDE manual steering files (slash commands)",
     "keywords": [
         "laravel",
         "boost",

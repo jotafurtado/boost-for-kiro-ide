@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-use Jcf\BoostForKiro\Hooks\HookInstaller;
-use Jcf\BoostForKiro\Hooks\HookWriter;
-use Jcf\BoostForKiro\Hooks\PromptServer;
-use Jcf\BoostForKiro\Hooks\PromptToHookConverter;
+use Jcf\BoostForKiro\Steering\PromptServer;
+use Jcf\BoostForKiro\Steering\PromptToSteeringConverter;
+use Jcf\BoostForKiro\Steering\SteeringInstaller;
+use Jcf\BoostForKiro\Steering\SteeringWriter;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\Server\Prompt;
 use Laravel\Mcp\Server\Prompts\Argument;
 
-it('skips prompts with arguments because static hooks cannot collect them', function () {
+it('skips prompts with arguments because static steering files cannot collect them', function () {
     $prompt = new class extends Prompt
     {
         public function arguments(): array
@@ -29,10 +29,10 @@ it('skips prompts with arguments because static hooks cannot collect them', func
     $promptServer = Mockery::mock(PromptServer::class);
     $promptServer->shouldReceive('getPrompts')->once()->andReturn(collect([$prompt]));
 
-    $writer = Mockery::mock(HookWriter::class);
+    $writer = Mockery::mock(SteeringWriter::class);
     $writer->shouldNotReceive('write');
 
-    $installer = new HookInstaller($promptServer, new PromptToHookConverter, $writer);
+    $installer = new SteeringInstaller($promptServer, new PromptToSteeringConverter, $writer);
 
     expect($installer->prompts())->toBeEmpty();
 });

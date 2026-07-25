@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Jcf\BoostForKiro\Hooks;
+namespace Jcf\BoostForKiro\Steering;
 
 use Illuminate\Support\Collection;
 use Laravel\Mcp\Server\Prompt;
 
-class HookInstaller
+class SteeringInstaller
 {
     public function __construct(
         protected PromptServer $promptServer,
-        protected PromptToHookConverter $converter,
-        protected HookWriter $writer,
+        protected PromptToSteeringConverter $converter,
+        protected SteeringWriter $writer,
     ) {
         //
     }
 
     /**
-     * Install all eligible Boost prompts as Kiro hooks.
+     * Install all eligible Boost prompts as Kiro manual steering files.
      *
-     * @return array<string, HookWriter::WRITTEN|HookWriter::UPDATED|HookWriter::FAILED>
+     * @return array<string, SteeringWriter::WRITTEN|SteeringWriter::UPDATED|SteeringWriter::FAILED>
      */
     public function install(): array
     {
@@ -32,8 +32,8 @@ class HookInstaller
             $safeName = str_replace(['/', '\\'], '-', $prompt->name());
             $filename = 'boost-prompt-'.$safeName;
             $filenames[] = $filename;
-            $hookData = $this->converter->convert($prompt);
-            $results[$prompt->name()] = $this->writer->write($filename, $hookData);
+            $markdown = $this->converter->convert($prompt);
+            $results[$prompt->name()] = $this->writer->write($filename, $markdown);
         });
 
         $this->writer->removeStale($filenames);
