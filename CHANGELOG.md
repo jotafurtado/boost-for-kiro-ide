@@ -2,6 +2,12 @@
 
 All notable changes to `boost-for-kiro-ide` will be documented in this file.
 
+## [2.5.1] - 2026-09-18
+
+### Added
+
+- Added support for `laravel/mcp` `^1.0`, aligning with Laravel Boost 2.9+ which supports Laravel MCP 1.x.
+
 ## [2.5.0] - 2026-07-25
 
 ### Changed
