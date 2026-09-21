@@ -39,6 +39,9 @@ describe('SteeringInstaller Integration', function () {
 
         $content = file_get_contents($expectedFile);
 
+        // Normalize line endings so the assertion is stable on Windows (CRLF).
+        $content = str_replace("\r\n", "\n", $content);
+
         // Front matter declares manual inclusion (Kiro 1.0 manual steering)
         expect(str_starts_with($content, "---\ninclusion: manual\n---"))->toBeTrue();
 

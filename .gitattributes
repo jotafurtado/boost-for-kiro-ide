@@ -1,7 +1,7 @@
 * text=auto
 
-*.md diff=markdown
-*.php diff=php
+*.md diff=markdown eol=lf
+*.php diff=php eol=lf
 
 /.github export-ignore
 /tests export-ignore

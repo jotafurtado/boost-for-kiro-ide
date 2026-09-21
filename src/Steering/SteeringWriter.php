@@ -37,7 +37,11 @@ class SteeringWriter
         $filePath = $directory.DIRECTORY_SEPARATOR.$filename.'.md';
         $existed = file_exists($filePath);
 
-        if (file_put_contents($filePath, $markdown."\n") === false) {
+        // Normalize line endings to LF so generated steering files are stable
+        // across platforms (Windows checkouts may otherwise introduce CRLF).
+        $normalized = str_replace(["\r\n", "\r"], "\n", $markdown);
+
+        if (file_put_contents($filePath, $normalized."\n") === false) {
             return self::FAILED;
         }
 

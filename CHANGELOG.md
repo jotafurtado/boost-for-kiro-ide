@@ -2,6 +2,12 @@
 
 All notable changes to `boost-for-kiro-ide` will be documented in this file.
 
+## [2.5.2] - 2026-09-21
+
+### Fixed
+
+- Normalize line endings to LF in `SteeringWriter` and test assertions to ensure consistent steering file generation and test execution across platforms, including Windows environments with CRLF checkouts.
+
 ## [2.5.1] - 2026-09-18
 
 ### Added
