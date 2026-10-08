@@ -46,6 +46,9 @@ jobs:
           coverage: none
 
       - name: Pin Laravel version
+        # bash on every OS: PowerShell hands the "|" in the carbon constraint
+        # to cmd.exe via composer.bat, which treats it as a pipe.
+        shell: bash
         run: composer require "laravel/framework:${{ matrix.laravel }}" "nesbot/carbon:^2.72.2|^3.0" --no-interaction --no-update
 
       - name: Install dependencies
