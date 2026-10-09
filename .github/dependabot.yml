@@ -1,26 +1,25 @@
 version: 2
 updates:
-  # Monitor Composer dependencies
+  # No composer.lock is committed, so Dependabot only opens a PR when a new
+  # release falls outside the composer.json constraint. "widen" extends the
+  # constraint (e.g. "^0.9.0" -> "^0.9.0|^1.0") instead of raising the floor.
   - package-ecosystem: "composer"
     directory: "/"
     schedule:
       interval: "weekly"
+    versioning-strategy: widen
     open-pull-requests-limit: 10
     labels:
       - "dependencies"
-    # Special attention to laravel/boost updates
-    reviewers:
-      - "jcf"
-    # Group minor and patch updates
+    commit-message:
+      prefix: "build"
+      include: "scope"
+    # Runtime dependencies (laravel/boost, laravel/mcp) stay ungrouped so each
+    # new major arrives in its own PR with its own CI run.
     groups:
-      laravel:
-        patterns:
-          - "laravel/*"
-          - "illuminate/*"
-      development-dependencies:
+      dev-dependencies:
         dependency-type: "development"
 
-  # Monitor GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -28,4 +27,10 @@ updates:
     labels:
       - "dependencies"
       - "github-actions"
-
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
