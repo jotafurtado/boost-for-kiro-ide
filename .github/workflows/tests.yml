@@ -52,7 +52,7 @@ jobs:
         run: composer require "laravel/framework:${{ matrix.laravel }}" "nesbot/carbon:^2.72.2|^3.0" --no-interaction --no-update
 
       - name: Install dependencies
-        uses: ramsey/composer-install@v3
+        uses: ramsey/composer-install@v4
         env:
           # Laravel 11 is EOL and blocked by current Composer advisories. We
           # install its final stable line only to preserve legacy test coverage.
